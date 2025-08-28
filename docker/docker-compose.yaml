@@ -3,6 +3,8 @@ services:
     image: ${APP_NAME:-reflex_poc}-backend:latest
     environment:
       REFLEX_DB_URL: sqlite:///data/reflex.db
+    ports:
+      - ${APP_BACKEND_PORT:-8000}:${APP_BACKEND_PORT:-8000}
     volumes:
       - db-data:/app/data
       - upload-data:/app/uploaded_files

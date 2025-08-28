@@ -100,4 +100,4 @@ CMD [ -d alembic ] \
  && uv run reflex db migrate; \
     exec uv run reflex run --env prod \
                            --backend-only \
-                           --backend-port ${APP_BACKEND_PORT}
+                           --backend-port ${APP_BACKEND_PORT:-8000}
