@@ -3,13 +3,13 @@ set -eou pipefail
 
 # Build and runtime app vars
 APP_NAME='reflex_poc'
-APP_DOMAIN='localdomain'
+APP_DOMAIN='poppet.io'
 APP_FRONTEND_FQDN="${APP_NAME}.${APP_DOMAIN}"
 APP_BACKEND_FQDN="api.${APP_DOMAIN}"
 APP_BACKEND_PORT="8000"
 
 # Passthrough caches
-REGISTRY_BASE='registry.poppet.io'
+REGISTRY_BASE="registry.${APP_DOMAIN}"
 REGISTRY_DOCKER="${REGISTRY_BASE}/dockerhub"
 REGISTRY_GHCR="${REGISTRY_BASE}/ghcr"
 
