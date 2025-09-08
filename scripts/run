@@ -7,10 +7,11 @@ source scripts/env
 
 ./scripts/build
 
-trap "docker compose down" SIGINT
+trap "docker compose down" SIGINT SIGQUIT SIGTERM
 
 echo '+++ Stack up +++'
 docker compose \
        --file docker/docker-compose.yaml \
        --project-directory $(pwd) \
-       up
+       up \
+       --remove-orphans

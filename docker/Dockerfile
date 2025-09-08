@@ -58,13 +58,14 @@ ARG APP_BACKEND_FQDN
 ARG APP_BACKEND_PORT
 
 COPY <<EOF /etc/caddy/Caddyfile
-{$APP_FRONTEND_FQDN}
+localhost
 
 encode gzip
+tls internal
 
 @backend_routes path /_event/* /ping /_upload /_upload/*
 handle @backend_routes {
-	reverse_proxy $APP_BACKEND_FQDN:$APP_BACKEND_PORT
+	reverse_proxy backend:8000
 }
 
 root * /srv
@@ -99,5 +100,6 @@ COPY --from=builder \
 CMD [ -d alembic ] \
  && uv run reflex db migrate; \
     exec uv run reflex run --env prod \
+                           --loglevel debug \
                            --backend-only \
                            --backend-port ${APP_BACKEND_PORT:-8000}

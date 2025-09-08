@@ -3,6 +3,10 @@ import reflex as rx
 
 
 def index():
+    return rx.text("Hello world")
+
+
+def custom():
     return rx.center(
         rx.vstack(
             rx.heading("Reflex PoC", font_size="1.5em"),
@@ -44,4 +48,5 @@ app = rx.App(
         accent_color="mint",
     ),
 )
-app.add_page(index, title="Reflex PoC")
+app.add_page(index)
+app.add_page(custom, route="/custom")
